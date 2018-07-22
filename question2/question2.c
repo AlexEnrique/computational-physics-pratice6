@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <math.h>
 #include <gsl/gsl_eigen.h>
 #include <gsl/gsl_vector.h>
 #include <gsl/gsl_matrix.h>
@@ -82,6 +83,29 @@ int main () {
       }
     }
     printf("]\n");
+  }
+  printf("=================================================================\n");
+
+  // População eletrônica
+  for (unsigned int k = 0; k < NUM_ATOMS; k++) {
+    double sum = 0;
+    printf("População eletrônica do orbital %d: ", k);
+    for (unsigned int j = 0; j < NUM_ATOMS; j++) {
+      sum += num(j) * pow(gsl_matrix_get(evec, j, k),2);
+    }
+    printf("%.2lf\n", sum);
+  }
+
+  // Ordem de ligação
+  printf("\n");
+  for (unsigned int r = 0; r < NUM_ATOMS; r++) {
+    for (unsigned int s = 0; s < NUM_ATOMS; s++) {
+      double sum = 0;
+      for (unsigned int j = 0; j < n; j++) {
+        sum += num(j) *gsl_matrix_get(evec, j, r) * gsl_matrix_get(evec, j, s);
+      }
+      printf("Ordem de ligação P_{%d,%d}: %lf\n", r, s, sum);
+    }
   }
   printf("=================================================================\n");
 

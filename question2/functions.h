@@ -31,3 +31,16 @@ double k(int i) {
       return 1.0;
   }
 }
+
+double num(int j) {
+  switch (j) {
+    case 1-1:
+      return 2.0;
+    case 3-1:
+      return 2.0;
+    case 5-1:
+      return 2.0;
+    default:
+      return 0.0;
+  }
+}

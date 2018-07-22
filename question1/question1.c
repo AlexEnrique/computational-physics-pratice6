@@ -26,6 +26,15 @@ int main () {
   // V = I (inicialmente)
   V = identity(N);
 
+  setQU(A, &Q, &U, N);
+  setR(A, Q, &R, U, N);
+
+  printf("Matrix Q:\n");
+  printMatrix(Q, N);
+
+  printf("Matrix R:\n");
+  printMatrix(R, N);
+
   do {
     // QR decomposition
     setQU(A, &Q, &U, N);
